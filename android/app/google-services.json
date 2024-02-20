@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "234434158054",
+    "project_id": "jamaah-time-official",
+    "storage_bucket": "jamaah-time-official.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234434158054:android:499c2433f5d6a4c3654a27",
+        "android_client_info": {
+          "package_name": "com.example.jamaah_time"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8wcJxUuRX-2jdzoTYdbGkLdPjBjpruD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
