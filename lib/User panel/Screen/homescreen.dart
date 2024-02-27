@@ -1,7 +1,6 @@
 // Import statements
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:adhan_dart/adhan_dart.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -24,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Position? _currentPosition;
   late StreamSubscription<Position> _positionStreamSubscription;
-  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   @override
   void initState() {
@@ -35,87 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
             _currentPosition = position;
           });
         });
-
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    initializeNotifications();
-    schedulePrayerNotifications();
   }
 
   @override
   void dispose() {
     _positionStreamSubscription.cancel();
     super.dispose();
-  }
-
-  void initializeNotifications() async {
-    final AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('adhan');
-    final InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  }
-
-
-  Future<void> scheduleNotification(String prayerName, tz.TZDateTime prayerTime) async {
-    print('Scheduling notification for $prayerName at $prayerTime');
-
-    final AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'prayer_channel_id',
-      'Prayer Reminders',
-      'Reminders for prayer times',
-      importance: Importance.max,
-      priority: Priority.high,
-      playSound: true,
-      icon: 'adhan',
-      sound: RawResourceAndroidNotificationSound('adhan'),
-    );
-    final NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    try {
-      await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        'Prayer Reminder',
-        'It\'s time for $prayerName prayer!',
-        prayerTime,
-        platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-      );
-      print('Notification for $prayerName scheduled successfully');
-    } catch (e) {
-      print('Error scheduling notification for $prayerName: $e');
-    }
-  }
-
-
-  Future<void> schedulePrayerNotifications() async {
-    Coordinates coordinates = _currentPosition != null
-        ? Coordinates(
-        _currentPosition!.latitude.toDouble(),
-        _currentPosition!.longitude.toDouble())
-        : Coordinates(0.0, 0.0);
-
-    DateTime date = DateTime.now();
-    CalculationParameters params = CalculationMethod.Dubai();
-    PrayerTimes prayerTimes = PrayerTimes(coordinates, date, params, precision: true);
-    DateTime manualTime = DateTime(date.year, date.month, date.day, 23, 28);
-
-    DateTime currentTime = DateTime.now();
-    DateTime nextNotificationTime = prayerTimes.fajr!.toLocal();
-    if (nextNotificationTime.isBefore(currentTime)) {
-      nextNotificationTime = prayerTimes.dhuhr!.toLocal();
-    }
-
-//  schedule notification 5 minutes after the next prayer time
-    nextNotificationTime = nextNotificationTime.add(Duration(minutes: 5));
-
-    scheduleNotification('Fajr', tz.TZDateTime.from(nextNotificationTime, tz.local));
-
-
-    // scheduleNotification('Fajr', tz.TZDateTime.from(prayerTimes.fajr!.toLocal(), tz.local));
-    scheduleNotification('Zuhr', tz.TZDateTime.from(prayerTimes.dhuhr!.toLocal(), tz.local));
-    //scheduleNotification('Asr', tz.TZDateTime.from(manualTime, tz.local));
-    scheduleNotification('Asr', tz.TZDateTime.from(prayerTimes.asr!.toLocal(), tz.local));
-    scheduleNotification('Maghrib', tz.TZDateTime.from(prayerTimes.maghrib!.toLocal(), tz.local));
-    scheduleNotification('Isha', tz.TZDateTime.from(prayerTimes.isha!.toLocal(), tz.local));
   }
 
   String timePresenter(DateTime dateTime){

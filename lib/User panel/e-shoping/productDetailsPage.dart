@@ -81,8 +81,7 @@ class ProductDetailsPage extends StatelessWidget {
                       icon: Icon(Icons.call),
                       label: Text('Order Now'),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
-                        onPrimary: Colors.white,
+                        foregroundColor: Colors.white, backgroundColor: Colors.green,
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),

@@ -473,8 +473,7 @@ class _MosqueInfoInputState extends State<MosqueInfoInput> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: AppColor,
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white, backgroundColor: AppColor,
                         ),
                         child: Text('Submit'),
                       ),

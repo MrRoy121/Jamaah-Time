@@ -142,8 +142,7 @@ class _AddProductPageState extends State<AddProductPage> {
             ElevatedButton(
               onPressed: _submitProduct,
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white, backgroundColor: Colors.green,
                 padding: EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),

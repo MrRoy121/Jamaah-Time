@@ -9,9 +9,8 @@ import 'package:jamaah_time/User%20panel/Screen/Navbar.dart';
 import 'package:jamaah_time/User%20panel/Screen/NothingScreen.dart';
 import 'package:jamaah_time/Widgets/location.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'Service/NotificationService.dart';
 import 'User panel/Screen/homescreen.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,7 @@ void main() async {
           measurementId: "G-2SSBK8J986" //
       )
   );
-  tz.initializeTimeZones();
+  await scheduleDailyNotifications();
   runApp(const MyApp());
 }
 
