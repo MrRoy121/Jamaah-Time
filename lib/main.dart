@@ -1,13 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:jamaah_time/Admin%20Panel/admin_navbar.dart';
-import 'package:jamaah_time/Admin%20Panel/mosque_info_input.dart';
 import 'package:jamaah_time/Constants/constant.dart';
-import 'package:jamaah_time/LoginScreen.dart';
 import 'package:jamaah_time/SplashScreen.dart';
-import 'package:jamaah_time/User%20panel/Screen/Navbar.dart';
 import 'package:jamaah_time/User%20panel/Screen/NothingScreen.dart';
-import 'package:jamaah_time/Widgets/location.dart';
+import 'package:location/location.dart' as ss;
 import 'package:permission_handler/permission_handler.dart';
 import 'Service/NotificationService.dart';
 import 'User panel/Screen/homescreen.dart';
@@ -24,11 +20,20 @@ void main() async {
           appId: "1:234434158054:android:499c2433f5d6a4c3654a27", //
           measurementId: "G-2SSBK8J986" //
       )
-  );
+  );_fetchLocation();
   await scheduleDailyNotifications();
   runApp(const MyApp());
 }
 
+Future<void> _fetchLocation() async {
+  ss.Location location = ss.Location();
+  try {
+    ss.LocationData locationData = await location.getLocation();
+    print("Location: ${locationData.latitude}, ${locationData.longitude}");
+  } catch (e) {
+    print("Error fetching location: $e");
+  }
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
