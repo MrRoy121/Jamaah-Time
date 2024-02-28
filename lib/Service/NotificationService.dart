@@ -26,13 +26,20 @@ Future<void> scheduleDailyNotifications() async {
   );
 
   PrayerTimes prayerTimes = await PrayerTimesUtil.getPrayerTimes();
+  // print(prayerTimes.maghrib!.toLocal());
+
+  // Function to add minutes to a DateTime object
+  DateTime addMinutes(DateTime dateTime, int minutes) {
+    return dateTime.add(Duration(minutes: minutes));
+  }
 
   List<Time> notificationTimes = [
-    _convertToTime(prayerTimes.fajr),
-    _convertToTime(prayerTimes.dhuhr),
-    _convertToTime(prayerTimes.asr),
-    _convertToTime(prayerTimes.maghrib),
-    _convertToTime(prayerTimes.isha),
+    _convertToTime(addMinutes(prayerTimes.fajr!.toLocal(), 15)),
+    _convertToTime(addMinutes(prayerTimes.dhuhr!.toLocal(), 15)),
+    _convertToTime(prayerTimes.asr!.toLocal()),
+    // _convertToTime(DateTime(prayerTimes.asr!.year, prayerTimes.asr!.month, prayerTimes.asr!.day, 12, 53)),
+    _convertToTime(prayerTimes.maghrib!.toLocal()),
+    _convertToTime(prayerTimes.isha!.toLocal()),
   ];
 
   for (int i = 0; i < notificationTimes.length; i++) {

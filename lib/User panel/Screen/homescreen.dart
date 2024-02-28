@@ -53,6 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Function to add minutes to a DateTime object
+    DateTime addMinutes(DateTime dateTime, int minutes) {
+      return dateTime.add(Duration(minutes: minutes));
+    }
+
 
     Coordinates coordinates = _currentPosition != null
         ? Coordinates(
@@ -60,7 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
         _currentPosition!.longitude.toDouble())
         : Coordinates(0.0, 0.0);
     DateTime date = DateTime.now();
-    CalculationParameters params = CalculationMethod.Dubai();
+    CalculationParameters params = CalculationMethod.Karachi();
+    params.madhab=Madhab.Hanafi;
     PrayerTimes prayerTimes = PrayerTimes(coordinates, date, params, precision: true);
 
     return LayoutBuilder(builder: (context, constraints){
@@ -151,13 +157,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Text("Fajr Time: ${timePresenter(prayerTimes.fajr!.toLocal())}"),
                     WaktoTime(
                         WakName: 'Fajr',
-                        WakTime: timePresenter(prayerTimes.fajr!.toLocal())
+                        // WakTime: timePresenter(prayerTimes.fajr!.toLocal())
+                        WakTime: timePresenter(addMinutes(prayerTimes.fajr!.toLocal(), 15))
                       // "${prayerTimes.maghrib!.toLocal().hour}:${prayerTimes.maghrib!.toLocal().minute}",
                     ),
                     SizedBox(height: height*0.03,),
                     WaktoTime(
                         WakName: 'Zuhr',
-                        WakTime: timePresenter(prayerTimes.dhuhr!.toLocal())
+                        // WakTime: timePresenter(prayerTimes.dhuhr!.toLocal())
+                        WakTime: timePresenter(addMinutes(prayerTimes.dhuhr!.toLocal(), 15))
                       // "${prayerTimes.maghrib!.toLocal().hour}:${prayerTimes.maghrib!.toLocal().minute}",
                     ),
                     // Text("Zuhr Time: ${timePresenter(prayerTimes.dhuhr!.toLocal())}"),
