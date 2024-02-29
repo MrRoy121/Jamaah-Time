@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _currentPosition!.longitude.toDouble())
         : Coordinates(0.0, 0.0);
     DateTime date = DateTime.now();
-    CalculationParameters params = CalculationMethod.Karachi();
+    CalculationParameters params = CalculationMethod.MuslimWorldLeague();
     params.madhab=Madhab.Hanafi;
     PrayerTimes prayerTimes = PrayerTimes(coordinates, date, params, precision: true);
 

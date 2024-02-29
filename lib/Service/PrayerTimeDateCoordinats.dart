@@ -17,7 +17,7 @@ class PrayerTimesUtil {
       Coordinates(currentLocation.latitude!, currentLocation.longitude!);
 
       DateTime date = DateTime.now();
-      CalculationParameters params = CalculationMethod.Karachi();
+      CalculationParameters params = CalculationMethod.MuslimWorldLeague();
       params.madhab=Madhab.Hanafi;
       return PrayerTimes(coordinates, date, params, precision: true);
     } else {

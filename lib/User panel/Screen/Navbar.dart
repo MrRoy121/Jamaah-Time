@@ -6,7 +6,7 @@ import 'package:jamaah_time/Admin%20Panel/info.dart';
 import 'package:jamaah_time/Admin%20Panel/mosque_info_input.dart';
 import 'package:jamaah_time/User%20panel/Screen/homescreen.dart';
 import 'package:jamaah_time/User%20panel/Screen/mosqueInfo.dart';
-import 'package:jamaah_time/User%20panel/Screen/notification.dart';
+import 'package:jamaah_time/User%20panel/Screen/Duas.dart';
 import 'package:jamaah_time/User%20panel/Screen/qiblaScreen_direction.dart';
 import 'package:jamaah_time/User%20panel/e-shoping/uShoping.dart';
 
@@ -62,8 +62,8 @@ class _NavbarState extends State<Navbar> {
             text: 'Qibla',
           ),
           GButton(
-            icon: Icons.notifications,
-            text: 'Notification',
+            icon: Icons.menu_book,
+            text: "Duaa",
           ),
           GButton(
             icon: Icons.add_shopping_cart,
