@@ -6,6 +6,7 @@ import 'package:jamaah_time/User%20panel/Screen/NothingScreen.dart';
 import 'package:location/location.dart' as ss;
 import 'package:permission_handler/permission_handler.dart';
 import 'Service/NotificationService.dart';
+// import 'Service/Dua_service.dart';
 import 'User panel/Screen/homescreen.dart';
 
 void main() async {
@@ -22,6 +23,7 @@ void main() async {
       )
   );_fetchLocation();
   await scheduleDailyNotifications();
+  // await scheduleRandomNotifications();
   runApp(const MyApp());
 }
 

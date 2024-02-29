@@ -129,19 +129,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Lat. ${coordinates.latitude}, ",
-                          style: TextStyle(color: Color(0xFF1388be), fontSize: 12),
-                        ),
-                        Text(
-                          "Lan. ${coordinates.longitude}",
-                          style: TextStyle(color: Color(0xFF1388be), fontSize: 12),
-                        )
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Lat. ${coordinates.latitude}, ",
+                    //       style: TextStyle(color: Color(0xFF1388be), fontSize: 12),
+                    //     ),
+                    //     Text(
+                    //       "Lan. ${coordinates.longitude}",
+                    //       style: TextStyle(color: Color(0xFF1388be), fontSize: 12),
+                    //     )
+                    //   ],
+                    // ),
+                    SizedBox(height: 20,),
                     Text(
                       "Local Timezone: ${DateTime.now().timeZoneName}",
                       style: TextStyle(

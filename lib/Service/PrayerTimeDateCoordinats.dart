@@ -18,6 +18,7 @@ class PrayerTimesUtil {
 
       DateTime date = DateTime.now();
       CalculationParameters params = CalculationMethod.Karachi();
+      params.madhab=Madhab.Hanafi;
       return PrayerTimes(coordinates, date, params, precision: true);
     } else {
       return Future.error('Failed to fetch location');
