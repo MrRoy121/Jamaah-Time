@@ -134,9 +134,9 @@ Future<void> scheduleRandomNotifications(
   final List<Time> notificationTimes = [
     Time(8, 0),
     Time(10, 0),
-    Time(1, 0),
-    Time(3, 0),
-    Time(5, 0),
+    Time(13, 0),
+    Time(15, 0),
+    Time(17, 0),
 
   ];
 
