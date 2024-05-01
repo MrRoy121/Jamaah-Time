@@ -14,11 +14,11 @@ class PrayerTimesUtil {
 
     if (currentLocation != null) {
       Coordinates coordinates =
-      Coordinates(currentLocation.latitude!, currentLocation.longitude!);
+          Coordinates(currentLocation.latitude!, currentLocation.longitude!);
 
       DateTime date = DateTime.now();
       CalculationParameters params = CalculationMethod.MuslimWorldLeague();
-      params.madhab=Madhab.Hanafi;
+      params.madhab = Madhab.Hanafi;
       return PrayerTimes(coordinates, date, params, precision: true);
     } else {
       return Future.error('Failed to fetch location');

@@ -6,12 +6,12 @@ import 'PrayerTimeDateCoordinats.dart';
 
 Future<void> scheduleDailyNotifications() async {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
 
   const AndroidInitializationSettings androidInitializationSettings =
-  AndroidInitializationSettings('ic_launcher');
+      AndroidInitializationSettings('ic_launcher');
   final IOSInitializationSettings iosInitializationSettings =
-  IOSInitializationSettings();
+      IOSInitializationSettings();
 
   final InitializationSettings initializationSettings = InitializationSettings(
     android: androidInitializationSettings,
@@ -36,7 +36,8 @@ Future<void> scheduleDailyNotifications() async {
     _convertToTime(addMinutes(prayerTimes.fajr!.toLocal(), 15)),
     _convertToTime(addMinutes(prayerTimes.dhuhr!.toLocal(), 15)),
     _convertToTime(prayerTimes.asr!.toLocal()),
-    _convertToTime(DateTime(prayerTimes.asr!.year, prayerTimes.asr!.month, prayerTimes.asr!.day, 16, 51)),
+    _convertToTime(DateTime(prayerTimes.asr!.year, prayerTimes.asr!.month,
+        prayerTimes.asr!.day, 16, 51)),
     _convertToTime(prayerTimes.maghrib!.toLocal()),
     _convertToTime(prayerTimes.isha!.toLocal()),
   ];
@@ -105,8 +106,6 @@ Future<void> scheduleRandomNotifications(
     "I seek refuge in the Perfect Words of Allah from the evil of what He has created.",
     "O Allah, forgive all of my sins: the small and great, the first and the last, the public and the private.",
     "Oh Allah, make it a start full of peace and faith, safety and Islam. My Lord and your Lord is Allah.",
-
-
   ];
 
   final List<String> headings = [
@@ -126,7 +125,6 @@ Future<void> scheduleRandomNotifications(
     "Dua for protection in the evening",
     "Dua for forgiveness of all sins",
     "When you see the new moon",
-
   ];
 
   final Random random = Random();
@@ -137,7 +135,6 @@ Future<void> scheduleRandomNotifications(
     Time(13, 0),
     Time(15, 0),
     Time(17, 0),
-
   ];
 
   for (final Time time in notificationTimes) {
